@@ -21,7 +21,14 @@ public class ApplicationConfig {
                 .password("jashwanth")
                 .roles("USER")
                 .build();
-        return new InMemoryUserDetailsManager(user);
+
+        UserDetails adminUser = User.withDefaultPasswordEncoder()
+                .username("admin")
+                .password("admin")
+                .roles("ADMIN")
+                .build();
+
+        return new InMemoryUserDetailsManager(user, adminUser);
     }
 
     @Bean

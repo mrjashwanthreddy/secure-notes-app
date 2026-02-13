@@ -27,6 +27,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login", "/notes/public").permitAll()
+                        // NEW RULE: Only ADMIN role can access /notes/admin
+                        .requestMatchers("/notes/admin").hasRole("ADMIN")
+                        // OLD RULE: Everything else just needs to be logged in (USER or ADMIN)
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess
