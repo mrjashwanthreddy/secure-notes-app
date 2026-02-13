@@ -20,4 +20,9 @@ public class NotesController {
     public String getPublicInfo() {
         return "This is public info. No login needed.";
     }
+
+    @GetMapping("/admin")
+    public String getAdminNotes() {
+        return "TOP SECRET: Launch codes are 1234. Only Admins can see this.";
+    }
 }
